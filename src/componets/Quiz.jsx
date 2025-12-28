@@ -1,3 +1,4 @@
+import { useState } from 'react';
 
 function Quiz() {
     const questions = [
@@ -17,25 +18,26 @@ function Quiz() {
             correctAnswer: "Pacific Ocean"
         },
         {
-            question: "which language is primarily used for web development?",
+            question: "which language is used for web development?",
             Options: ["Python", "JavaScript", "PHP", "all of the above"],
             correctAnswer: "all of the above"
-        }
+        },
     ];
 
-    // const initialAnswers = [null, null, null, null];
+     const initialAnswers = [null, null, null, null];
 
-    // const [userAnswers, setUserAnswers] = useState(initialAnswers);
+     const [userAnswers, setUserAnswers] = useState(initialAnswers);
 
-    // const [currentQuestion, setCurrentQuestion] = useState(0);
+     const [currentQuestion, setCurrentQuestion] = useState(3);
 
-    // function handleSelectOption(option) {}
+     function handleSelectOption(option) {}
+
     return (
         <div>
             <h2>Question 1</h2>
-            <p className="question">{questions[0].question}</p>
+            <p className="question">{questions[currentQuestion].question}</p>
 
-            {questions[0].Options.map((option) => (
+            {questions[currentQuestion].Options.map((option) => (
                 <button className="option" onClick={() => handleSelectOption(option)}>
                     {option}
                 </button>
