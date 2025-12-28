@@ -52,8 +52,16 @@ function Quiz() {
             }
       }
 
+       function restartQuiz() {
+        // Logic to restart the quiz can be added here
+        setUserAnswers(initialAnswers);
+        setCurrentQuestion(0);
+        setIsQuizFinished(false);
+        
+    }
+
       if (isQuizFinished) {
-        return <Results userAnswers={userAnswers} questions={questions}/>;
+        return <Results userAnswers={userAnswers} questions={questions} restartQuiz={restartQuiz}/>;
       }
  
     return (  
