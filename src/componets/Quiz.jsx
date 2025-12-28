@@ -28,13 +28,29 @@ function Quiz() {
 
      const [userAnswers, setUserAnswers] = useState(initialAnswers);
 
-     const [currentQuestion, setCurrentQuestion] = useState(3);
+     const [currentQuestion, setCurrentQuestion] = useState(0);
 
-     function handleSelectOption(option) {}
+     function handleSelectOption(option) {
+            const newUserAnswers = [...userAnswers];
+            newUserAnswers[currentQuestion] = option;
+            setUserAnswers(newUserAnswers);
+     }
+
+     function goToNextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                setCurrentQuestion(currentQuestion + 1);
+            }
+     }
+
+     function goToPreviousQuestion() {
+            if (currentQuestion > 0) {
+                setCurrentQuestion(currentQuestion - 1);
+            }
+      }
 
     return (
         <div>
-            <h2>Question 1</h2>
+            <h2>Question {currentQuestion + 1}</h2>
             <p className="question">{questions[currentQuestion].question}</p>
 
             {questions[currentQuestion].Options.map((option) => (
@@ -44,8 +60,8 @@ function Quiz() {
             ))}
 
             <div className="nav-buttons">
-                <button>Previous</button>
-                <button>Next</button>
+                <button onClick={goToPreviousQuestion} disabled={currentQuestion === 0}>Previous</button>
+                <button onClick={goToNextQuestion} disabled={currentQuestion === questions.length - 1}>Next</button>
             </div>
         </div>
     );
