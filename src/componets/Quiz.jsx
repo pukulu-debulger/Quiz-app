@@ -30,6 +30,8 @@ function Quiz() {
 
      const [currentQuestion, setCurrentQuestion] = useState(0);
 
+     const selectedOption = userAnswers[currentQuestion];
+
      function handleSelectOption(option) {
             const newUserAnswers = [...userAnswers];
             newUserAnswers[currentQuestion] = option;
@@ -54,14 +56,14 @@ function Quiz() {
             <p className="question">{questions[currentQuestion].question}</p>
 
             {questions[currentQuestion].Options.map((option) => (
-                <button className="option" onClick={() => handleSelectOption(option)}>
+                <button className={"option" + (selectedOption === option ? " selected" : "")} onClick={() => handleSelectOption(option)}>
                     {option}
                 </button>
             ))}
 
             <div className="nav-buttons">
                 <button onClick={goToPreviousQuestion} disabled={currentQuestion === 0}>Previous</button>
-                <button onClick={goToNextQuestion} disabled={currentQuestion === questions.length - 1}>Next</button>
+                <button onClick={goToNextQuestion} disabled={!selectedOption}>Next</button>
             </div>
         </div>
     );
